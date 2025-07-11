@@ -1,14 +1,17 @@
-# netlify.toml - Versiune finală simplificată
+# netlify.toml - Versiune finală pentru o singură pagină de admin (index.html)
 
-# Setările [build] sunt în interfața Netlify.
+# Setările [build] nu sunt necesare aici, fiind definite în interfața Netlify.
 
-# Regula pentru API-uri
+# Regula #1: API-uri
+# Orice request către /api/... este trimis la funcția corespunzătoare.
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Regula pentru link-urile de download
+# Regula #2: Link-uri de download
+# Orice request către un link de download (ex: /d/ID_UNIC)
+# este trimis la funcția get-link.js.
 [[redirects]]
   from = "/d/*"
   to = "/.netlify/functions/get-link/:splat"
