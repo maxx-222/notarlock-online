@@ -10,28 +10,31 @@
 
     <!-- Stiluri pentru a personaliza meniul inline Netlify Identity -->
     <style>
-        /* Țintim containerul specific al meniului */
+        /* Țintim containerul specific al meniului generat de widget */
         [data-netlify-identity-menu] ul {
             list-style: none !important;
             padding-left: 0 !important;
             margin-top: 25px !important;
         }
 
-        /* Ascundem primul element din listă, care este "Sign up" */
+        /* Ascundem primul element din listă, care este link-ul "Sign up" */
         [data-netlify-identity-menu] ul > li:first-child {
             display: none !important;
         }
 
-        /* Țintim al doilea element (Log in) pentru a-l centra */
+        /* Țintim al doilea element (containerul link-ului "Log in") pentru a-l centra */
         [data-netlify-identity-menu] ul > li:last-child {
             text-align: center !important;
         }
 
-        /* Transformăm link-ul "Log in" într-un buton stilizat */
+        /* Acesta este selectorul cheie: transformăm link-ul de Login într-un buton */
         [data-netlify-identity-menu] a[href*="login"] {
             display: inline-block !important;
+            /* Culoarea verde a titlului */
             background-color: #58bebe !important;
+            /* Culoarea textului */
             color: white !important;
+            /* Aducem stilurile de la clasa .button pentru consistență */
             padding: 12px 25px !important;
             text-decoration: none !important;
             font-size: 16px !important;
@@ -39,7 +42,7 @@
             transition: background-color 0.3s ease !important;
         }
 
-        /* Adăugăm efectul de hover */
+        /* Adăugăm și un efect la hover, ca la celelalte butoane */
         [data-netlify-identity-menu] a[href*="login"]:hover {
             background-color: #4aa0a0 !important;
         }
@@ -59,10 +62,9 @@
         <h1>Portal Securizat</h1>
         <p>Vă rugăm să vă autentificați pentru a accesa panoul de administrare.</p>
         
-        <!-- Acest div va fi acum stilizat corect -->
+        <!-- Acest div va fi acum stilizat corect de regulile CSS de mai sus -->
         <div data-netlify-identity-menu></div>
     </div>
 
-    <!-- Am scos scriptul care forța deschiderea pop-up-ului pentru a permite afișarea meniului inline -->
 </body>
 </html>
