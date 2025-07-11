@@ -1,5 +1,6 @@
-# netlify.toml - Versiune Finală pentru Deploy prin Git
-# Setările de build sunt acum în interfața Netlify, deci nu le mai punem aici.
+# netlify.toml - Versiune FINALĂ de securizare
+
+# Setările [build] nu sunt necesare aici, fiind definite în interfața Netlify.
 
 # Regula #1: API-uri
 [[redirects]]
@@ -13,9 +14,20 @@
   to = "/.netlify/functions/get-link/:splat"
   status = 200
   
+# Regula #3: PROTECȚIA PRINCIPALĂ
+# Orice începe cu /admin... va fi redirecționat la login dacă utilizatorul nu este autentificat.
+# Aceasta este plasa de siguranță care prinde tot.
 [[redirects]]
   from = "/admin/*"
   to = "/index.html"
-  status = 302
+  status = 401 # Unauthorized
   force = true
-  conditions = {Role = ["!*"]}
+  
+# Regula #4: ACCESUL PERMIS
+# După ce regula de mai sus a fost verificată și utilizatorul ESTE logat,
+# această regulă se asigură că la accesarea căii "curate" /admin,
+# se servește conținutul din /admin.html.
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
