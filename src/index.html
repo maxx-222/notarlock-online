@@ -76,33 +76,39 @@
 
     <!-- 5. Scriptul de Autentificare și Protecție -->
     <script>
-        // Așteptăm ca widget-ul să se inițializeze
-        window.netlifyIdentity.on('init', user => {
-            // Dacă NU există un utilizator logat
-            if (!user) {
-                // Deschidem fereastra de login
-                window.netlifyIdentity.open();
-                // Și setăm un listener care, DUPĂ login, va reîncărca pagina
-                window.netlifyIdentity.on('login', () => {
-                    // Reîncărcarea paginii este necesară pentru ca Netlify să
-                    // aplice cookie-ul de sesiune corect și să nu mai deschidă fereastra.
-                    window.location.reload(true); 
-                });
-            } 
-            // Dacă EXISTĂ un utilizator logat
-            else {
-                // Pur și simplu afișăm conținutul paginii.
-                // 'flex' este folosit pentru a se potrivi cu stilul de centrare din CSS.
-                document.body.style.display = 'flex';
-            }
-        });
+    const checkUser = () => {
+        const user = window.netlifyIdentity.currentUser();
 
-        // Adăugăm și un listener pentru logout, pentru o experiență mai fluidă
-        window.netlifyIdentity.on('logout', () => {
-            // După logout, reîncărcăm pagina. Scriptul de mai sus va vedea
-            // că nu mai există utilizator și va deschide din nou fereastra de login.
+        // Dacă utilizatorul ESTE logat
+        if (user) {
+            // Afișăm conținutul paginii și ne oprim.
+            document.body.style.display = 'flex';
+            return;
+        }
+
+        // Dacă utilizatorul NU este logat
+        // Setăm un "listener" care va reîncărca pagina DUPĂ un login reușit.
+        window.netlifyIdentity.on('login', () => {
             window.location.reload(true);
         });
-    </script>
+
+        // Și deschidem fereastra de login.
+        window.netlifyIdentity.open();
+    };
+
+    // Verificăm dacă widget-ul s-a încărcat deja.
+    if (window.netlifyIdentity) {
+        checkUser();
+    } else {
+        // Dacă nu s-a încărcat încă, așteptăm evenimentul de "init"
+        // ca o plasă de siguranță, și apoi rulăm verificarea.
+        window.netlifyIdentity.on('init', checkUser);
+    }
+
+    // Adăugăm și listener-ul pentru logout
+    window.netlifyIdentity.on('logout', () => {
+        window.location.reload(true);
+    });
+</script>
 </body>
 </html>
