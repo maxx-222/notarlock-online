@@ -1,20 +1,22 @@
-# Regula pentru API-uri (login, logout, create-link etc.)
+# netlify.toml - Versiune Finală pentru Deploy prin Git
+# Setările de build sunt acum în interfața Netlify, deci nu le mai punem aici.
+
+# Regula #1: API-uri
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Regula pentru link-urile dinamice pentru clienți (ex: /d/ID_UNIC)
+# Regula #2: Link-uri de download
 [[redirects]]
   from = "/d/*"
   to = "/.netlify/functions/get-link/:splat"
   status = 200
-
-# Regula de protecție pentru pagina de admin
-# Dacă nu există cookie-ul "nf_jwt", redirecționează la login.
+  
+# Regula #3: Protecția pentru pagina de admin
 [[redirects]]
   from = "/admin.html"
-  to = "/login.html"
+  to = "/index.html"
   status = 302
   force = true
-  conditions = {Cookie = ["!nf_jwt"]}
+  conditions = {Role = ["!*"]}
