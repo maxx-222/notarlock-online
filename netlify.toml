@@ -13,9 +13,8 @@
   to = "/.netlify/functions/get-link/:splat"
   status = 200
   
-# Regula #3: Protecția pentru pagina de admin
 [[redirects]]
-  from = "/admin.html"
+  from = "/admin/*"
   to = "/index.html"
   status = 302
   force = true
