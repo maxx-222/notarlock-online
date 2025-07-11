@@ -4,13 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ad Validitatem - Autentificare</title>
+    
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Stiluri speciale pentru a personaliza widget-ul Netlify Identity -->
+    <style data-netlify-identity-button-styles>
+        /* Ascunde complet tab-ul/link-ul de "Sign up" */
+        a[href="#signup"] {
+            display: none !important;
+        }
+
+        /* Stilizează butonul principal de "Log In" pentru a se potrivi cu tema */
+        .form button[type="submit"] {
+            background-color: #58bebe !important; /* Verdele tău specific */
+            color: white !important;
+            border-radius: 5px !important;
+            border: none !important;
+            font-weight: bold !important;
+        }
+
+        /* Adaugă și un efect la hover, pentru consistență */
+        .form button[type="submit"]:hover {
+            background-color: #4aa0a0 !important; /* Verde mai închis la hover */
+        }
+    </style>
+
 </head>
 <body>
     <div class="page-header">
         <div class="header-content">
-            <!-- ADAUGĂ LOGO-URILE AICI -->
+            <!-- Asigură-te că ai adăugat codurile Base64 pentru logo-uri aici -->
             <img src="adauga codul base64 pentru logo stanga" alt="Logo Stanga" class="logo logo-left">
             <span class="header-title">Ad Validitatem</span>
             <img src="adauga codul base64 pentru logo dreapta" alt="Logo Dreapta" class="logo logo-right">
