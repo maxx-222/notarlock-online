@@ -1,10 +1,14 @@
-# netlify.toml
+# netlify.toml - Versiune finală, publică dar neindexabilă
 
+# Setările de build sunt în interfața Netlify
+
+# Regula pentru API-uri
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Regula pentru link-urile de download
 [[redirects]]
   from = "/d/*"
   to = "/.netlify/functions/get-link/:splat"
