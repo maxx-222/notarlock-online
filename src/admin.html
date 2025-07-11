@@ -9,6 +9,25 @@
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <link rel="stylesheet" href="style.css">
+
+<!-- Scriptul principal pentru widget-ul de login -->
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- Scriptul de protecție la nivel de client -->
+<script>
+  // Verificăm dacă utilizatorul este logat imediat ce widget-ul se încarcă
+  if (window.netlifyIdentity) {
+    const user = window.netlifyIdentity.currentUser();
+    // Dacă nu există un utilizator logat, redirecționăm imediat la pagina de login
+    if (!user) {
+      window.location.replace("/login.html");
+    }
+  } else {
+    // Dacă widget-ul nu se încarcă deloc, redirecționăm preventiv
+    window.location.replace("/login.html");
+  }
+</script>
+
 </head>
 <body>
     <div class="page-header">

@@ -1,39 +1,15 @@
-# netlify.toml - Versiune FINALĂ de securizare
+# netlify.toml - Versiune finală simplificată
 
-# Setările [build] nu sunt necesare aici, fiind definite în interfața Netlify.
+# Setările [build] sunt în interfața Netlify.
 
-# Regula #1: API-uri
+# Regula pentru API-uri
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Regula #2: Link-uri de download
+# Regula pentru link-urile de download
 [[redirects]]
   from = "/d/*"
   to = "/.netlify/functions/get-link/:splat"
   status = 200
-  
-# Regula #3: PROTECȚIA PRINCIPALĂ
-# Orice începe cu /admin... va fi redirecționat la login dacă utilizatorul nu este autentificat.
-# Aceasta este plasa de siguranță care prinde tot.
-[[redirects]]
-  from = "/admin/*"
-  to = "/index.html"
-  status = 401 # Unauthorized
-  force = true
-  
-# Regula #4: ACCESUL PERMIS
-# După ce regula de mai sus a fost verificată și utilizatorul ESTE logat,
-# această regulă se asigură că la accesarea căii "curate" /admin,
-# se servește conținutul din /admin.html.
-[[redirects]]
-  from = "/admin"
-  to = "/admin.html"
-  status = 200
-
-[[redirects]]
-  from = "/test"
-  to = "https://www.google.com"
-  status = 302
-  force = true
