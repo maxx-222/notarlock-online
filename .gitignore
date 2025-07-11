@@ -1,0 +1,8 @@
+# Folderul cu dependențele Node.js (foarte mare și inutil de stocat)
+node_modules/
+
+# Orice fișier sau folder de 'build' pe care l-am folosit la testare
+dist/
+
+# Fișierele de configurare locală Netlify
+.netlify/

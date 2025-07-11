@@ -1,0 +1,171 @@
+/* src/style.css (VERSIUNE FINALĂ) */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #554a58; 
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.page-header {
+    width: 100%;
+    background-color: rgba(0,0,0,0.1); 
+    padding: 15px 0; 
+    margin-bottom: 30px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.header-content {
+    width: 100%;
+    max-width: 960px; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 65px; 
+    width: auto;
+}
+
+.header-title {
+    font-size: clamp(1.5em, 4vw, 2.5em); 
+    font-weight: bold;
+    color: #58bebe; 
+    text-align: center; 
+    padding: 0 15px;
+    flex-grow: 1; 
+}
+
+.container {
+    background-color: #fff; 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    color: #333; 
+    border: 2px solid #58bebe; 
+    margin-bottom: 30px; 
+    box-sizing: border-box;
+}
+
+.container h1, .container h2 { color: #554a58; margin-bottom: 20px; }
+.container .recipient-h1 { color: #554a58 !important; }
+
+p { line-height: 1.6; margin-bottom: 15px; }
+
+.button {
+    background-color: #58bebe; color: white; border: none; padding: 12px 25px;
+    text-align: center; text-decoration: none; display: inline-block; font-size: 16px;
+    border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 10px; margin-bottom: 10px;
+}
+.button:hover { background-color: #4aa0a0; }
+.button:active { transform: translateY(1px); }
+
+input[type="file"] {display: none;}
+input[type="password"], input[type="text"] {
+    width: calc(100% - 24px); padding: 10px; margin-bottom: 15px;
+    border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+}
+input[type="password"]:focus, input[type="text"]:focus {
+    border-color: #58bebe; box-shadow: 0 0 0 0.2rem rgba(88, 190, 190, 0.25);
+}
+
+#fileList li {
+    background-color: #e9ecef; padding: 8px 12px; border-radius: 4px;
+    margin-bottom: 5px; font-size: 0.9em; text-align: left;
+}
+
+#status, #decryptStatus { margin-top: 15px; font-weight: bold; }
+.hidden {display: none;}
+
+.loader {
+    border: 5px solid #f3f3f3; border-top: 5px solid #58bebe; 
+    border-radius: 50%; width: 30px; height: 30px;
+    animation: spin 1s linear infinite; margin: 10px auto;
+}
+.recipient-loader { border-top: 5px solid #58bebe !important; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.file-download-list { list-style: none; padding: 0; text-align: left; }
+.file-download-list li {
+    padding: 10px; border-bottom: 1px solid #eee; display: flex;
+    justify-content: space-between; align-items: center;
+}
+.file-download-list li:last-child {border-bottom: none;}
+
+.download-link {
+    background-color: #554a58; color: white; padding: 5px 10px; border-radius: 3px;
+    text-decoration: none; font-size: 0.9em;
+}
+.download-link:hover { background-color: #403842; }
+
+/* Adăugăm stiluri pentru tabelul de admin */
+#linksTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+#linksTable th, #linksTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+#linksTable th {
+    background-color: #f2f2f2;
+}
+
+/* Stil pentru butoanele mici din tabel (ex: Copiază) */
+.button-small {
+    background-color: #58bebe; /* Aceeași culoare ca butoanele mari */
+    color: white;
+    border: none;
+    padding: 6px 12px; /* Mai mic decât butoanele standard */
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px; /* Spațiu între butoane */
+}
+.button-small:hover {
+    background-color: #4aa0a0; /* Efect la hover */
+}
+
+/* Stil specific pentru butonul de Ștergere */
+.button-small-delete {
+    background-color: #e74c3c; /* O culoare roșie pentru pericol/ștergere */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.button-small-delete:hover {
+    background-color: #c0392b; /* Roșu mai închis la hover */
+}
+
+
+@media (max-width: 700px) {
+    .header-content { flex-direction: column; gap: 10px; }
+    .logo { height: 50px; }
+    .header-title { font-size: 1.8em; order: -1; }
+    .page-header { margin-bottom: 20px; }
+    .container { margin-left: 10px; margin-right: 10px; padding: 20px; }
+}
+
+@media (max-width: 400px) {
+    .logo.logo-right { display: none; } 
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Autentificare - Ad Validitatem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-header">...</div> <!-- Poți adăuga logo-urile aici -->
+    <div class="container" id="loginContainer">
+        <h1>Autentificare Admin</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Utilizator" required>
+            <input type="password" id="password" placeholder="Parolă" required>
+            <button type="submit" class="button">Login</button>
+        </form>
+        <div id="loginStatus" style="margin-top: 15px;"></div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const statusDiv = document.getElementById('loginStatus');
+            statusDiv.textContent = 'Se verifică...';
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ username, password })
+                });
+                if (response.ok) {
+                    // Login reușit, redirecționează la pagina de admin
+                    window.location.href = '/admin.html';
+                } else {
+                    const result = await response.json();
+                    throw new Error(result.message || 'Eroare la autentificare.');
+                }
+            } catch (err) {
+                statusDiv.textContent = `Eroare: ${err.message}`;
+                statusDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
