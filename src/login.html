@@ -8,25 +8,40 @@
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Stiluri speciale pentru a personaliza widget-ul Netlify Identity -->
-    <style data-netlify-identity-button-styles>
-        /* Ascunde complet tab-ul/link-ul de "Sign up" */
-        a[href="#signup"] {
+    <!-- Stiluri pentru a personaliza meniul inline Netlify Identity -->
+    <style>
+        /* Țintim containerul specific al meniului */
+        [data-netlify-identity-menu] ul {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin-top: 25px !important;
+        }
+
+        /* Ascundem primul element din listă, care este "Sign up" */
+        [data-netlify-identity-menu] ul > li:first-child {
             display: none !important;
         }
 
-        /* Stilizează butonul principal de "Log In" pentru a se potrivi cu tema */
-        .form button[type="submit"] {
-            background-color: #58bebe !important; /* Verdele tău specific */
-            color: white !important;
-            border-radius: 5px !important;
-            border: none !important;
-            font-weight: bold !important;
+        /* Țintim al doilea element (Log in) pentru a-l centra */
+        [data-netlify-identity-menu] ul > li:last-child {
+            text-align: center !important;
         }
 
-        /* Adaugă și un efect la hover, pentru consistență */
-        .form button[type="submit"]:hover {
-            background-color: #4aa0a0 !important; /* Verde mai închis la hover */
+        /* Transformăm link-ul "Log in" într-un buton stilizat */
+        [data-netlify-identity-menu] a[href*="login"] {
+            display: inline-block !important;
+            background-color: #58bebe !important;
+            color: white !important;
+            padding: 12px 25px !important;
+            text-decoration: none !important;
+            font-size: 16px !important;
+            border-radius: 5px !important;
+            transition: background-color 0.3s ease !important;
+        }
+
+        /* Adăugăm efectul de hover */
+        [data-netlify-identity-menu] a[href*="login"]:hover {
+            background-color: #4aa0a0 !important;
         }
     </style>
 
@@ -43,19 +58,11 @@
     <div class="container">
         <h1>Portal Securizat</h1>
         <p>Vă rugăm să vă autentificați pentru a accesa panoul de administrare.</p>
+        
+        <!-- Acest div va fi acum stilizat corect -->
         <div data-netlify-identity-menu></div>
     </div>
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.open();
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin.html";
-            });
-          }
-        });
-      }
-    </script>
+
+    <!-- Am scos scriptul care forța deschiderea pop-up-ului pentru a permite afișarea meniului inline -->
 </body>
 </html>
