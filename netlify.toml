@@ -31,3 +31,9 @@
   from = "/admin"
   to = "/admin.html"
   status = 200
+
+[[redirects]]
+  from = "/test"
+  to = "https://www.google.com"
+  status = 302
+  force = true
