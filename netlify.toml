@@ -1,0 +1,20 @@
+# Regula pentru API-uri (login, logout, create-link etc.)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Regula pentru link-urile dinamice pentru clienți (ex: /d/ID_UNIC)
+[[redirects]]
+  from = "/d/*"
+  to = "/.netlify/functions/get-link/:splat"
+  status = 200
+
+# Regula de protecție pentru pagina de admin
+# Dacă nu există cookie-ul "nf_jwt", redirecționează la login.
+[[redirects]]
+  from = "/admin.html"
+  to = "/login.html"
+  status = 302
+  force = true
+  conditions = {Cookie = ["!nf_jwt"]}
