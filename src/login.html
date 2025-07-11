@@ -1,13 +1,37 @@
-<!-- Script în src/login.html -->
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.open(); // Deschide fereastra de login/signup
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin.html"; // Redirecționează după login
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Validitatem - Autentificare</title>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-header">
+        <div class="header-content">
+            <!-- ADAUGĂ LOGO-URILE AICI -->
+            <img src="adauga codul base64 pentru logo stanga" alt="Logo Stanga" class="logo logo-left">
+            <span class="header-title">Ad Validitatem</span>
+            <img src="adauga codul base64 pentru logo dreapta" alt="Logo Dreapta" class="logo logo-right">
+        </div>
+    </div>
+    <div class="container">
+        <h1>Portal Securizat</h1>
+        <p>Vă rugăm să vă autentificați pentru a accesa panoul de administrare.</p>
+        <div data-netlify-identity-menu></div>
+    </div>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.open();
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin.html";
+            });
+          }
         });
       }
-    });
-  }
-</script>
+    </script>
+</body>
+</html>
